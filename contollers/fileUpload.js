@@ -22,7 +22,7 @@ const fileUpload = async (req, res) => {
         return res.status(400).json({ error: 'Unsupported file type' });
       }
       const buffer = Buffer.from(base64Data.replace(/^data:.*;base64,/, ''), 'base64');
-      fs.writeFileSync('test_upload.png', buffer);
+      //fs.writeFileSync('test_upload.png', buffer);
       const fileName = `uploaded_file.${fileExtension}`;
       const formData = new FormData();
       formData.append('Filedata[]', buffer, {
