@@ -14,6 +14,7 @@ const uploadInvoice = async (req, res) => {
         invoiceValue,
         record_id,
         purchaseOrderNumber,
+        invoiceNumber,
         ondcContactPocId,
         ondcContactPocName,
         files,
@@ -26,6 +27,7 @@ const uploadInvoice = async (req, res) => {
         "58": {"value": invoiceValue},
         "57": {"value": purchaseOrderNumber},
         "78": { "value": `{"reference_column_id":"${ondcContactPocId}","value":"${ondcContactPocName}"}` },
+        "55": {"value" : invoiceNumber},
       };
       const createFileData = (file) => ({
         name: file.name,

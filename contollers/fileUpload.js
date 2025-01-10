@@ -36,7 +36,7 @@ const fileUpload = async (req, res) => {
           ...formData.getHeaders(), // Include FormData headers
         },
       });
-      console.log(fileresponse.data);
+      //console.log(fileresponse.data);
       return res.json({ msg: fileresponse.data });
     } catch (err) {
       console.error('Error uploading file:', err);

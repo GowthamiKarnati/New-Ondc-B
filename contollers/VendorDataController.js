@@ -8,13 +8,10 @@ const VendorData = async (req, res) => {
         };
         const sheetId = 21205795;
 
-        // Get the cleaned value from request query parameters
         const cleanedValue = req.query.cleanedValue || '';
-        console.log(cleanedValue);
-
+        console.log('cleanedValue', cleanedValue)
         // Construct the criteria string
         const criteria = `sheet_${sheetId}.column_155="${cleanedValue}"`;
-        console.log(criteria);
 
         const customersRecords = await getRecords(url, headers, sheetId, criteria);
         res.send({ data: customersRecords });

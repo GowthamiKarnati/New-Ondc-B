@@ -1,5 +1,5 @@
 const getRecords = require('../contollers/function')
-const pocName= async (req, res) => {
+const getPocEmail= async (req, res) => {
     try {
         const url = process.env.TIGERSHEET_API_ONDC;
         const headers = {
@@ -7,8 +7,8 @@ const pocName= async (req, res) => {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         };
         const sheetId = 58675056;
-        const email = req.query.verifyValue || '';
-        const criteria = `sheet_${sheetId}.column_75="${email}"`;
+        const name = req.query.name || '';
+        const criteria = `sheet_${sheetId}.column_74="${name}"`;
         const limit = 1;
         const columns = 'column_74, column_75';
 
@@ -20,4 +20,4 @@ const pocName= async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
   };
-  module.exports = pocName;
+module.exports = getPocEmail
