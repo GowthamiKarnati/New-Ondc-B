@@ -7,12 +7,12 @@ const updateInvoice = async(req,res)=>{
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         };
         const sheetId = process.env.TIGERSHEET_ONDC_UPLOAD_INVOICE_SHEET_ID
-        const {vendorPanNumber,vendorName, invoiceDate, invoiceValue, purchaseOrderNumber, invoiceNumber, ondcContactPocId, ondcContactPocName, files, record_id, updateRecordId} = req.body;
+        const {invoiceDate, invoiceValue, purchaseOrderNumber, invoiceNumber, ondcContactPocId, ondcContactPocName, files, record_id, updateRecordId} = req.body;
         console.log('invoiceValue', invoiceValue)
         const recordId = updateRecordId;
         const dataField = {
-        "158": { "value": vendorPanNumber },
-        "60": { "value": `{"reference_column_id":"${record_id}","value":"${vendorName}"}` },
+       // "158": { "value": vendorPanNumber },
+        //"60": { "value": `{"reference_column_id":"${record_id}","value":"${vendorName}"}` },
         "56": { "value": invoiceDate },
         "58": {"value": invoiceValue},
         "57": {"value": purchaseOrderNumber},
