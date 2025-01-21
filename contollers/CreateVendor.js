@@ -1,6 +1,5 @@
 const postRecords = require('./postFunction')
 const createVendor = async(req, res)=>{
-    console.log(req.body);
     try{
     const url = process.env.TIGERSHEET_API_ONDC_CREATE_URL;
       const headers = {
@@ -102,7 +101,6 @@ const createVendor = async(req, res)=>{
       }
       const data = JSON.stringify(dataField);
       const tyreData = await postRecords(url, headers, sheetId, data);
-      console.log('TyreData:', tyreData);
       res.send({ data: tyreData });  
       }catch(err){
         console.log(err);

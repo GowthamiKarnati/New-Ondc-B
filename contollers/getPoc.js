@@ -9,7 +9,7 @@ const getPocEmail= async (req, res) => {
         const sheetId = 58675056;
         const name = req.query.name || '';
         const criteria = `sheet_${sheetId}.column_74="${name}"`;
-        const limit = 1;
+        const limit = 0;
         const columns = 'column_74, column_75';
 
         const customersRecords = await getRecords(url, headers, sheetId, criteria, limit, columns);

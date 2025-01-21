@@ -7,7 +7,6 @@ const getInvoiceData = async(req, res)=>{
           'Authorization': process.env.TIGERSHEET_AUTHORIZATION_ONDC_TOKEN,
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       };
-      console.log("get invoice", req.query.number)
       const sheetId = process.env.TIGERSHEET_ONDC_UPLOAD_INVOICE_SHEET_ID;
       const invoiceNumber = req.query.number || '';
       const criteria = `sheet_${sheetId}.column_55="${invoiceNumber}"`;
@@ -15,7 +14,6 @@ const getInvoiceData = async(req, res)=>{
       // const columns = 'column_74, column_75';
 
       const customersRecords = await getData(url, headers, sheetId, criteria, limit);
-      console.log(customersRecords)
       res.send({ data: customersRecords });
 
   } catch (err) {

@@ -9,7 +9,7 @@ const VendorData = async (req, res) => {
         const sheetId = 21205795;
 
         const cleanedValue = req.query.cleanedValue || '';
-        console.log('cleanedValue', cleanedValue)
+        //console.log('cleanedValue', cleanedValue)
         // Construct the criteria string
         const criteria = `sheet_${sheetId}.column_155="${cleanedValue}"`;
 

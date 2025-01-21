@@ -9,7 +9,7 @@ const pocName= async (req, res) => {
         const sheetId = 58675056;
         const email = req.query.verifyValue || '';
         const criteria = `sheet_${sheetId}.column_75="${email}"`;
-        const limit = 1;
+        const limit = 0;
         const columns = 'column_74, column_75';
 
         const customersRecords = await getRecords(url, headers, sheetId, criteria, limit, columns);

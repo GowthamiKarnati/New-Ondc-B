@@ -18,8 +18,8 @@ const uploadInvoice = async (req, res) => {
         ondcContactPocId,
         ondcContactPocName,
         files,
+        serviceAcceptanceFile
         } = req.body;
-        console.log(req.body);
       const dataField = {
         "158": { "value": vendorPanNumber },
         "60": { "value": `{"reference_column_id":"${record_id}","value":"${vendorName}"}` },
@@ -42,9 +42,12 @@ const uploadInvoice = async (req, res) => {
         const formattedPancardData = files.map(createFileData);
         dataField["159"] = { "value": JSON.stringify(formattedPancardData) };
       }
+      if(serviceAcceptanceFile && serviceAcceptanceFile.length > 0){
+        const formattedServiceFile = serviceAcceptanceFile.map(createFileData);
+        dataField["224"] = { "value": JSON.stringify(formattedServiceFile) };
+      }
       const data = JSON.stringify(dataField);
       const tyreData = await postRecords(url, headers, sheetId, data);
-      console.log('TyreData:', tyreData);
       res.send({ data: tyreData });
       } catch (err) {
         console.error('Error in fetching data:', err.message);
