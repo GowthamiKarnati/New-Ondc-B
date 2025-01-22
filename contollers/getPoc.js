@@ -6,7 +6,7 @@ const getPocEmail= async (req, res) => {
             'Authorization': process.env.TIGERSHEET_AUTHORIZATION_ONDC_TOKEN,
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         };
-        const sheetId = 58675056;
+        const sheetId = process.env.TIGERSHEET_ONDC_POC_SHEET_ID;
         const name = req.query.name || '';
         const criteria = `sheet_${sheetId}.column_74="${name}"`;
         const limit = 0;

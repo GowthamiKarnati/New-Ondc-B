@@ -6,11 +6,9 @@ const VendorData = async (req, res) => {
             'Authorization': process.env.TIGERSHEET_AUTHORIZATION_ONDC_TOKEN,
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         };
-        const sheetId = 21205795;
+        const sheetId = process.env.TIGERSHEET_ONDC_VENDOR_MASTER_SHEET_ID;
 
         const cleanedValue = req.query.cleanedValue || '';
-        //console.log('cleanedValue', cleanedValue)
-        // Construct the criteria string
         const criteria = `sheet_${sheetId}.column_155="${cleanedValue}"`;
 
         const customersRecords = await getRecords(url, headers, sheetId, criteria);

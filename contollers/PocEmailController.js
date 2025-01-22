@@ -6,7 +6,7 @@ const pocName= async (req, res) => {
             'Authorization': process.env.TIGERSHEET_AUTHORIZATION_ONDC_TOKEN,
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         };
-        const sheetId = 58675056;
+        const sheetId = process.env.TIGERSHEET_ONDC_POC_SHEET_ID;
         const email = req.query.verifyValue || '';
         const criteria = `sheet_${sheetId}.column_75="${email}"`;
         const limit = 0;

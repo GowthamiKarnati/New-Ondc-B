@@ -6,7 +6,7 @@ const getPoNumbers= async (req, res) => {
             'Authorization': process.env.TIGERSHEET_AUTHORIZATION_ONDC_TOKEN,
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         };
-        const sheetId = 97361453;
+        const sheetId = process.env.TIGERSHEET_ONDC_PO_SHEET_ID;
         const vendorName = req.query.vendorName || '';
         const poStatus = 'Open';
         const criteria = `sheet_${sheetId}.column_207="${vendorName}" AND sheet_${sheetId}.column_218="${poStatus}"`;
