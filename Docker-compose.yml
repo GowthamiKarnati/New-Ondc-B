@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  ondc-backend-api:
+    image: 418596590147.dkr.ecr.ap-southeast-1.amazonaws.com/ondc-backend-image:latest
+    restart: on-failure
+    ports:
+      - "4000:4000"
+    container_name: ondc-backend-container # Set a specific container name
+    logging:
+      driver: "awslogs"
+      options:
+        awslogs-region: "ap-southeast-1" # AWS region for CloudWatch Logs
+        awslogs-group: "ondc-backend-container-logs" # CloudWatch Log Group
+        awslogs-stream: "ondc-backend-container-logs-stream" # Log Stream for the container
+        awslogs-create-group: "true" # Automatically create the Log Group
