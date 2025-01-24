@@ -9,7 +9,10 @@ const getInvoiceData = async(req, res)=>{
       };
       const sheetId = process.env.TIGERSHEET_ONDC_UPLOAD_INVOICE_SHEET_ID;
       const invoiceNumber = req.query.number || '';
-      const criteria = `sheet_${sheetId}.column_55="${invoiceNumber}"`;
+      const companyName = req.query.companyName || '';
+      const criteria = `sheet_${sheetId}.column_55="${invoiceNumber}" AND sheet_${sheetId}.column_60="${companyName}"`;
+      console.log(criteria);
+
       const limit = 1;
       // const columns = 'column_74, column_75';
 

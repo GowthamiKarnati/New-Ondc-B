@@ -11,6 +11,7 @@ const getPocEmail = require('../contollers/getPoc');
 const getPoNumbers = require('../contollers/getPoNumber');
 
 
+
 router.route('/vendor-info').get(VendorData);
 router.route('/poc-name').get(pocName);
 router.route('/create').post(createVendor);
@@ -19,6 +20,6 @@ router.route('/file-upload').post(fileUpload);
 router.route('/get-invoice-data').get(getInvoiceData);
 router.route('/update-invoice').post(updateInvoice)
 router.route('/get-poc-email').get(getPocEmail);
-router.route('/get-po-numbers').get(getPoNumbers)
+router.route('/get-po-numbers').get(getPoNumbers);
 
 module.exports = router;
