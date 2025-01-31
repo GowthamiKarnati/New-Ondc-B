@@ -13,10 +13,9 @@ const VendorData = async (req, res) => {
 
         const customersRecords = await getRecords(url, headers, sheetId, criteria);
         res.send({ data: customersRecords });
-
     } catch (err) {
         console.error('Error in fetching data:', err.message);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ error: "Failed to fetch vendor data", details: err.message });
     }
 };
 

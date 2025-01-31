@@ -19,7 +19,7 @@ const fileUpload = async (req, res) => {
         fileExtension = 'pdf';
         mimeType = 'application/pdf';
       } else {
-        return res.status(400).json({ error: 'Unsupported file type' });
+        throw new Error('Unsupported file type: ' + fileType);
       }
       const buffer = Buffer.from(base64Data.replace(/^data:.*;base64,/, ''), 'base64');
       //fs.writeFileSync('test_upload.png', buffer);
@@ -36,11 +36,25 @@ const fileUpload = async (req, res) => {
           ...formData.getHeaders(), // Include FormData headers
         },
       });
-      //console.log(fileresponse.data);
       return res.json({ msg: fileresponse.data });
     } catch (err) {
-      console.error('Error uploading file:', err);
-      res.status(500).send('Internal Server Error');
-    }
+      console.error('File upload error:', err);
+
+      if (err.response) {
+          // Axios received a response with an error status
+          console.error('Response data:', err.response.data);
+          console.error('Response status:', err.response.status);
+          console.error('Response headers:', err.response.headers);
+          return res.status(err.response.status).json({ error: err.response.data });
+      } else if (err.request) {
+          // The request was made but no response was received
+          console.error('No response received:', err.request);
+          return res.status(500).json({ error: 'No response received from server' });
+      } else {
+          // Something else went wrong
+          console.error('Error message:', err.message);
+          return res.status(500).json({ error: err.message });
+      }
+  }
 }
 module.exports = fileUpload;
