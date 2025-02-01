@@ -22,6 +22,7 @@ const updateInvoice = async (req, res) => {
 			selectedPoNumbers,
 			selectedPOId,
 		} = req.body;
+		console.log("selectedPOId", selectedPOId);
 		const recordId = updateRecordId;
 		const subSheetId = process.env.TIGERSHEET_ONDC_INVOICE_UPLOAD_SUB_SHEET_ID;
 		const parent_column_id = 245;
@@ -69,15 +70,11 @@ const updateInvoice = async (req, res) => {
 			245,
 			selectedPOId
 		);
-		if (deleteRecord) {
-			const updateResponse = await getUpdate(url, headers, sheetId, recordId, data);
-			if (!updateResponse || updateResponse.error) {
-				return res.status(500).send({ error: "Something went wrong while updating the record." });
-			}
-			res.send({ msg: "Record Updated successfully", data: updateResponse });
-		} else {
-			res.status(500).send({ error: "Something went wrong while updating the Records" });
+		const updateResponse = await getUpdate(url, headers, sheetId, recordId, data);
+		if (!updateResponse || updateResponse.error) {
+			return res.status(500).send({ error: "Something went wrong while updating the record." });
 		}
+		res.send({ msg: "Record Updated successfully", data: updateResponse });
 	} catch (e) {
 		console.log(e);
 	}
